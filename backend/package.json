@@ -1,0 +1,23 @@
+{
+  "name": "penglai-admin",
+  "version": "1.0.0",
+  "description": "走进蓬莱后台管理系统",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.7.0",
+    "koa-body": "^4.1.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "koa2-cors": "^2.0.6",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  }
+}
