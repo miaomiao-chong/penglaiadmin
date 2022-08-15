@@ -1,7 +1,8 @@
 module.exports = {
   presets: [
     // https://github.com/vuejs/vue-cli/tree/master/packages/@vue/babel-preset-app
-    '@vue/cli-plugin-babel/preset'
+    '@vue/cli-plugin-babel/preset',
+		["@babel/preset-env", { "modules": false }]
   ],
   'env': {
     'development': {
@@ -10,5 +11,14 @@ module.exports = {
       // https://panjiachen.github.io/vue-element-admin-site/guide/advanced/lazy-loading.html
       'plugins': ['dynamic-import-node']
     }
-  }
+  },
+	plugins: [
+		[
+			"component",
+			{
+				"libraryName": "element-ui",
+				"styleLibraryName": "theme-chalk"
+			}
+		]
+	]
 }

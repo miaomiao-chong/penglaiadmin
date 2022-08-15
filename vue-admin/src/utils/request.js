@@ -1,8 +1,9 @@
 import axios from 'axios'
-import { MessageBox, Message } from 'element-ui'
+// import { , Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
 import router from '@/router'
+import Vue from 'vue'
 // create an axios instance
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
@@ -46,7 +47,8 @@ service.interceptors.response.use(
     //console.log("rfdsfdsfdses", res);
     if(res.code===20000){
       if(res.message&&res.message.length){
-        Message({
+        console.log("message");
+        Vue.prototype.$message({
           message: res.message ,
           type: 'success',
           duration: 2 * 1000
@@ -56,7 +58,7 @@ service.interceptors.response.use(
     }
     // if the custom code is not 20000, it is judged as an error.
     if (res.code !== 20000) {
-      Message({
+      Vue.prototype.$message({
         message: res.message || 'Error',
         type: 'error',
         duration: 2 * 1000
@@ -77,7 +79,7 @@ service.interceptors.response.use(
   error => {
     console.dir(error);
    
-    Message({
+    Vue.prototype.$message({
       message: error.response.data.message||error.message,
       type: 'error',
       duration: 2 * 1000

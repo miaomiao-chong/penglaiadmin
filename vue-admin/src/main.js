@@ -1,11 +1,77 @@
 import Vue from 'vue'
 import VueLazyload from 'vue-lazyload'
 
-import Cookies from 'js-cookie'
 
 import 'normalize.css/normalize.css' // a modern alternative to CSS resets
 
-import Element from 'element-ui'
+// import Element from 'element-ui'
+import {
+  Card,
+  Button,
+  Table,
+  TableColumn,
+  Form,
+  FormItem,
+  Input,
+  Pagination,
+  Switch,
+  Tag,
+  Radio,
+  Row,
+  Dialog,
+  Col,
+  Dropdown,
+  Breadcrumb,
+  Menu,
+  MenuItem,
+  Submenu,
+  Popover,
+  Popconfirm,
+  DropdownMenu,
+  DropdownItem,
+  Upload,
+  BreadcrumbItem,
+  InputNumber,
+  
+} from 'element-ui'
+Vue.component(Card.name, Card)
+// Vue.component(.name, Card)
+Vue.component(Button.name, Button)
+Vue.component(Table.name, Table)
+Vue.component(TableColumn.name, TableColumn)
+Vue.component(Form.name, Form)
+Vue.component(FormItem.name, FormItem)
+Vue.component(Input.name, Input)
+Vue.component(Pagination.name, Pagination)
+Vue.component(Switch.name, Switch)
+Vue.component(Tag.name, Tag)
+Vue.component(Radio.name, Radio)
+Vue.component(Row.name, Row)
+Vue.component(Dialog.name, Dialog)
+Vue.component(  Col.name,   Col)
+Vue.component(  Dropdown.name,   Dropdown)
+Vue.component(  DropdownMenu.name,   DropdownMenu)
+Vue.component(  DropdownItem.name,   DropdownItem)
+Vue.component(  Breadcrumb.name,   Breadcrumb)
+Vue.component(  Menu.name,   Menu)
+Vue.component(  MenuItem.name,   MenuItem)
+Vue.component(  Submenu.name,   Submenu)
+Vue.component(  Popover.name,   Popover)
+Vue.component(  Popconfirm.name,   Popconfirm)
+Vue.component(  Upload.name,   Upload)
+Vue.component(  BreadcrumbItem.name,   BreadcrumbItem)
+Vue.component(  InputNumber.name,   InputNumber)
+
+import { Message,Loading } from 'element-ui'
+
+Vue.use(Loading)
+Vue.use(Message)
+
+Vue.prototype.$message = Message
+Vue.prototype.$loading = Loading
+
+
+
 import './styles/element-variables.scss'
 import enLang from 'element-ui/lib/locale/lang/en'// 如果使用中文语言包请默认支持，无需额外引入，请删除该依赖
 
@@ -34,13 +100,10 @@ import * as filters from './filters' // global filters
 //   mockXHR()
 // }
 
-Vue.use(Element, {
-  size: Cookies.get('size') || 'medium', // set element-ui default size
-  locale: enLang // 如果使用中文，无需设置，请删除
-})
+
 
 Vue.use(VueLazyload, {
-  loading:require('@/assets/loading.jpg'),
+  loading: require('@/assets/loading.jpg'),
   error: require('@/assets/wuneirong.png')
 })
 
