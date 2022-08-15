@@ -81,7 +81,6 @@ async function updateimg(ctx, data) {
       }).catch((err) => {  })
     })
   })
-
 }
 
 // 修改对应id的 introduction 

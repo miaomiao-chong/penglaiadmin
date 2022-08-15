@@ -65,7 +65,10 @@ service.interceptors.response.use(
       // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
       if (res.code === -2) {
         // to re-login
+        this.setTimeout(() => {
           location.reload()
+        }, 1000);
+        
       }
       return Promise.reject(new Error(res.message || 'Error'))
     } 

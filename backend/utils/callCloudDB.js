@@ -1,37 +1,37 @@
 // 通过云数据库拿到数据
 const { getAccessToken } = require('./getAccessToken.js')
-const rp = require('request-promise')
+const axios = require('axios')
 const { CLOUD_ENV } = require('./constant')
 
 const callCloudDB = async (fnName, query = {}) => {
   const ACCESS_TOKEN = await getAccessToken()
   console.log("fnname", fnName);
-  let body
+  let data
   if (fnName === 'databasecollectionget') {
-    body = {
+    data = {
       env: CLOUD_ENV,
     }
 
   } else {
-    body = {
+    data = {
       query,
       env: CLOUD_ENV,
     }
   }
   const options = {
     method: 'POST',
-    uri: `https://api.weixin.qq.com/tcb/${fnName}?access_token=${ACCESS_TOKEN}`,
-    body,
+    url: `https://api.weixin.qq.com/tcb/${fnName}?access_token=${ACCESS_TOKEN}`,
+    data,
     json: true // Automatically stringifies the body to JSON
   }
 
-  return await rp(options)
+  return axios(options)
     .then((res) => {
-      console.log();
-      return res
+      console.log("axios res", res);
+      return res.data
     })
     .catch(function (err) {
-      console.log("5555-----", err);
+      console.log("axios err", err);
     })
 }
 // 导出promise对象 供在controller里面的文件调用

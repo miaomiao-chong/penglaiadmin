@@ -16,7 +16,7 @@ const errorHandler = (error, ctx) => {
     let body ={}
     if(errmessage===constant.UNAUTHORIZATION){
       status=401
-      body={message: 'token失效了 请重新登录'}
+      body={message: '登录过期 请重新登录'}
     }
     if(errmessage===constant.UNPERMISSION){
       status=403
@@ -45,7 +45,7 @@ const errorHandler = (error, ctx) => {
       if (errwxdata.errcode === 42001 || errwxdata.errcode === 40001) {
         console.log("进入到这里111");
         code = constant.TOKEN_EXPIRE;
-        message = "微信accesstoken失效，请等待页面自动刷新或者手动刷新"
+        message = "正在刷新微信accesstoken，请重试"
         updateAccessToken()
       }
       if (errwxdata.errcode === -501000) {

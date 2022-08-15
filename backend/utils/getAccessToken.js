@@ -1,4 +1,4 @@
-const rp = require('request-promise')
+const axios = require('axios')
 const { APPID, APPSECRET } = require('../utils/constant')
 const URL = `https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${APPID}&secret=${APPSECRET}`
 const fs = require('fs')
@@ -8,8 +8,9 @@ const fileName = path.resolve(__dirname, './access_token.json')
 
 const updateAccessToken = async () => {
 
-  const resStr = await rp(URL)
-  const res = JSON.parse(resStr)
+  const resStr = await axios.get(URL)
+
+  const res =resStr.data
   console.log("重新获取了一次", res)
   if (res.access_token) {
     fs.writeFileSync(fileName, JSON.stringify({

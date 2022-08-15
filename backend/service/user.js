@@ -13,8 +13,6 @@ function login(ctx, data) {
       admit:'admit'
     }).get()`
     await callCloudDB('databasequery', query).then(async (res) => {
-    
-    
       if (res.errcode == 0 && res.data && res.data.length && res.data[0] && JSON.parse(res.data[0]).salt_password === md5(data.password + constant.PWD_SALT)) {
         resolve(JSON.parse(res.data[0]))
       } else if (res.errcode !== 0) {
@@ -29,9 +27,9 @@ function login(ctx, data) {
     }).catch((err) => {
       // 这个逻辑应该永远不会走到的，因为微信接口是通过判断errcode来确定是否成功的， 而不是走catch逻辑
       // 所以后面的路由都不处理catch里面的逻辑了
-      ctx.app.emit('error', new Error(), ctx);
+      ctx.app.emit('error', new Error(JSON.stringify({ message: "weizhicuowu" })), ctx);
       // 其他错误
-      reject(err)
+      reject()
     })
   })
 }

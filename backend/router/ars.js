@@ -62,7 +62,7 @@ router.post('/updateimg', verifyAuth, async (ctx, next) => {
   let params = JSON.parse(ctx.request.body.data)
  
   await updateimg(ctx, params).then((res) => {
- 
+    console.log("updateimgres", res);
     ctx.body = {
       code: constant.SUCCESS_CODE,
       message: "图片修改成功",
