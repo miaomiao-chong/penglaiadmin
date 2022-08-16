@@ -1,7 +1,8 @@
 'use strict'
+// https://www.cnblogs.com/HouJiao/p/13845693.html
 const path = require('path')
 const defaultSettings = require('./src/settings.js')
-
+const { SkeletonPlugin } = require('page-skeleton-webpack-plugin')
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
@@ -48,6 +49,19 @@ module.exports = {
       }
     }
   },
+
+
+  configureWebpack: {
+    // 骨架屏
+    plugins: [
+      new SkeletonPlugin({
+        pathname: path.resolve(__dirname, 'shell'), // the path to store shell file
+        staticDir: path.resolve(__dirname, 'dist'), // the same as the `output.path`
+        routes: ['/login','/'], // Which routes you want to generate skeleton screen
+      })
+    ],
+  },
+
   chainWebpack(config) {
     // it can improve the speed of the first screen, it is recommended to turn on preload
     // it can improve the speed of the first screen, it is recommended to turn on preload
@@ -88,7 +102,7 @@ module.exports = {
             .plugin('ScriptExtHtmlWebpackPlugin')
             .after('html')
             .use('script-ext-html-webpack-plugin', [{
-            // `runtime` must same as runtimeChunk name. default is `runtime`
+              // `runtime` must same as runtimeChunk name. default is `runtime`
               inline: /runtime\..*\.js$/
             }])
             .end()

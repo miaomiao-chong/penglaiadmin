@@ -68,7 +68,7 @@ import { Message,Loading } from 'element-ui'
 // Vue.use(Message)
 // 不要用Vue.use  ！！！ 会自动执行一次   弹出一个空框框
 Vue.prototype.$message = Message
-Vue.prototype.$loading = Loading
+Vue.use(Loading.directive);
 
 
 
